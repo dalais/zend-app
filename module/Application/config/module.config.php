@@ -8,7 +8,6 @@
 namespace Application;
 
 use Zend\Router\Http\Literal;
-use Zend\Router\Http\Segment;
 use Zend\Router\Http\TreeRouteStack;
 use Zend\ServiceManager\Factory\InvokableFactory;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;

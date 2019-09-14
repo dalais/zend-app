@@ -9,11 +9,13 @@ namespace Application;
 
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
+use Zend\Router\Http\TreeRouteStack;
 use Zend\ServiceManager\Factory\InvokableFactory;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 
 return [
     'router' => [
+        'router_class' => TreeRouteStack::class,
         'routes' => [
             'home' => [
                 'type' => Literal::class,
@@ -25,13 +27,13 @@ return [
                     ],
                 ],
             ],
-            'application' => [
-                'type'    => Segment::class,
+            'about' => [
+                'type' => Literal::class,
                 'options' => [
-                    'route'    => '/application[/:action]',
+                    'route' => '/about',
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
-                        'action'     => 'index',
+                        'action'     => 'about',
                     ],
                 ],
             ],

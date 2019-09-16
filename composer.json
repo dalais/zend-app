@@ -22,7 +22,9 @@
         "doctrine/doctrine-migrations-bundle": "^2.0",
         "doctrine/migrations": "^2.1",
         "zendframework/zend-mvc-form": "^1.0",
-        "zendframework/zend-session": "^2.8"
+        "zendframework/zend-session": "^2.8",
+        "zendframework/zend-mvc-plugins": "^1.0",
+        "zendframework/zend-captcha": "^2.9"
     },
     "autoload": {
         "psr-4": {

@@ -269,7 +269,7 @@ class RegistrationForm extends Form
      */
     private function addInputFilter($step)
     {
-        $inputFilter = $this->getInputFilter();
+        $inputFilter = new InputFilter();
 
         if ($step==1) {
 
@@ -291,7 +291,45 @@ class RegistrationForm extends Form
             ]);
 
             $inputFilter->add([
-                'name'     => 'full_name',
+                'name'     => 'first_name',
+                'required' => true,
+                'filters'  => [
+                    ['name' => 'StringTrim'],
+                    ['name' => 'StripTags'],
+                    ['name' => 'StripNewlines'],
+                ],
+                'validators' => [
+                    [
+                        'name'    => 'StringLength',
+                        'options' => [
+                            'min' => 1,
+                            'max' => 128
+                        ],
+                    ],
+                ],
+            ]);
+
+            $inputFilter->add([
+                'name'     => 'last_name',
+                'required' => true,
+                'filters'  => [
+                    ['name' => 'StringTrim'],
+                    ['name' => 'StripTags'],
+                    ['name' => 'StripNewlines'],
+                ],
+                'validators' => [
+                    [
+                        'name'    => 'StringLength',
+                        'options' => [
+                            'min' => 1,
+                            'max' => 128
+                        ],
+                    ],
+                ],
+            ]);
+
+            $inputFilter->add([
+                'name'     => 'middle_name',
                 'required' => true,
                 'filters'  => [
                     ['name' => 'StringTrim'],

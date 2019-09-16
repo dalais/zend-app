@@ -8,6 +8,7 @@
 namespace Application;
 
 use Zend\Router\Http\Literal;
+use Zend\Router\Http\Segment;
 use Zend\Router\Http\TreeRouteStack;
 use Zend\ServiceManager\Factory\InvokableFactory;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
@@ -26,13 +27,16 @@ return [
                     ],
                 ],
             ],
-            'about' => [
-                'type' => Literal::class,
+            'registration' => [
+                'type'    => Segment::class,
                 'options' => [
-                    'route' => '/about',
+                    'route'    => '/registration[/:action]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                    ],
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
-                        'action'     => 'about',
+                        'controller'    => Controller\RegistrationController::class,
+                        'action'        => 'index',
                     ],
                 ],
             ],
@@ -41,8 +45,14 @@ return [
     'controllers' => [
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
+            Controller\RegistrationController::class => Controller\Factory\RegistrationControllerFactory::class,
         ],
     ],
+
+    'session_containers' => [
+        'UserRegistration'
+    ],
+
     'view_manager' => [
         'display_not_found_reason' => true,
         'display_exceptions'       => true,

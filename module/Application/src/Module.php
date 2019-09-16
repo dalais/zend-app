@@ -7,6 +7,9 @@
 
 namespace Application;
 
+use Zend\Mvc\MvcEvent;
+use Zend\Session\SessionManager;
+
 class Module
 {
     const VERSION = '3.0.3-dev';
@@ -14,5 +17,18 @@ class Module
     public function getConfig()
     {
         return include __DIR__ . '/../config/module.config.php';
+    }
+
+    /**
+     * Этот метод вызывается по завершении самозагрузки MVC.
+     */
+    public function onBootstrap(MvcEvent $event)
+    {
+        $application = $event->getApplication();
+        $serviceManager = $application->getServiceManager();
+
+        // Следующая строка инстанцирует SessionManager и автоматически
+        // делает его выбираемым 'по умолчанию'.
+        $sessionManager = $serviceManager->get(SessionManager::class);
     }
 }

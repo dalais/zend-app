@@ -1,0 +1,87 @@
+<?php
+$form->get('email')->setAttributes([
+    'class'=>'form-control',
+    'placeholder'=>'name@yourcompany.com'
+]);
+
+$form->get('first_name')->setAttributes([
+    'class'=>'form-control',
+    'placeholder'=>'Иван'
+]);
+
+$form->get('last_name')->setAttributes([
+    'class'=>'form-control',
+    'placeholder'=>'Иванов'
+]);
+
+$form->get('middle_name')->setAttributes([
+    'class'=>'form-control',
+    'placeholder'=>'Иванович'
+]);
+
+$form->get('password')->setAttributes([
+    'class'=>'form-control',
+    'placeholder'=>'Введите пароль (минимум 6 символов)'
+]);
+
+$form->get('confirm_password')->setAttributes([
+    'class'=>'form-control',
+    'placeholder'=>'Подтвердите пароль'
+]);
+
+$form->get('submit')->setAttributes(array('class'=>'btn btn-primary'));
+
+$form->prepare();
+?>
+
+<h1>Регистрация пользователя - Шаг 1</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <?= $this->form()->openTag($form); ?>
+
+        <div class="form-group">
+            <?= $this->formLabel($form->get('email')); ?>
+            <?= $this->formElement($form->get('email')); ?>
+            <?= $this->formElementErrors($form->get('email')); ?>
+        </div>
+
+        <div class="form-group">
+            <?= $this->formLabel($form->get('first_name')); ?>
+            <?= $this->formElement($form->get('first_name')); ?>
+            <?= $this->formElementErrors($form->get('first_name')); ?>
+        </div>
+
+        <div class="form-group">
+            <?= $this->formLabel($form->get('last_name')); ?>
+            <?= $this->formElement($form->get('last_name')); ?>
+            <?= $this->formElementErrors($form->get('last_name')); ?>
+        </div>
+
+        <div class="form-group">
+            <?= $this->formLabel($form->get('middle_name')); ?>
+            <?= $this->formElement($form->get('middle_name')); ?>
+            <?= $this->formElementErrors($form->get('middle_name')); ?>
+        </div>
+
+        <div class="form-group">
+            <?= $this->formLabel($form->get('password')); ?>
+            <?= $this->formElement($form->get('password')); ?>
+            <?= $this->formElementErrors($form->get('password')); ?>
+        </div>
+
+        <div class="form-group">
+            <?= $this->formLabel($form->get('confirm_password')); ?>
+            <?= $this->formElement($form->get('confirm_password')); ?>
+            <?= $this->formElementErrors($form->get('confirm_password')); ?>
+        </div>
+
+        <div class="form-group">
+            <?= $this->formElement($form->get('submit')); ?>
+        </div>
+
+        <?= $this->formElement($form->get('csrf')); ?>
+
+        <?= $this->form()->closeTag(); ?>
+    </div>
+</div>

@@ -36,6 +36,9 @@ class RegistrationController extends AbstractActionController
     {
         // Определяем текущий шаг.
         $step = 1;
+        /*echo '<pre>';
+        debug_zval_dump($this->sessionContainer);
+        exit;*/
         if (isset($this->sessionContainer->step)) {
             $step = $this->sessionContainer->step;
         }
@@ -50,7 +53,6 @@ class RegistrationController extends AbstractActionController
         }
 
         $form = new RegistrationForm($step);
-
         // Проверяем, отправил ли пользователь форму.
         if($this->getRequest()->isPost()) {
 

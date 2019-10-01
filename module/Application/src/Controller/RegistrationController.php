@@ -2,9 +2,8 @@
 namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
-use Application\Form\RegistrationForm;
 use Zend\Session\Container;
+use Zend\View\Model\JsonModel;
 
 /**
  * Это класс контроллера, отображающий страницу с формой регистрации пользователя.
@@ -34,83 +33,13 @@ class RegistrationController extends AbstractActionController
      */
     public function indexAction()
     {
-        // Определяем текущий шаг.
-        $step = 1;
-        /*echo '<pre>';
-        debug_zval_dump($this->sessionContainer);
-        exit;*/
-        if (isset($this->sessionContainer->step)) {
-            $step = $this->sessionContainer->step;
-        }
-
-        // Проверка номера шага на корректность (от 1 до 3).
-        if ($step<1 || $step>3)
-            $step = 1;
-
-        if ($step==1) {
-            // Инициализируем выборы пользователя.
-            $this->sessionContainer->userChoices = [];
-        }
-
-        $form = new RegistrationForm($step);
-        // Проверяем, отправил ли пользователь форму.
-        if($this->getRequest()->isPost()) {
-
-            // Заполняем форму POST-данными.
-            $data = $this->params()->fromPost();
-
-            $form->setData($data);
-
-            // Валидируем форму.
-            if($form->isValid()) {
-
-                // Получаем отфильтрованные и валидированные данные.
-                $data = $form->getData();
-
-                // Сохраняем выборы пользователя в сессии.
-                $this->sessionContainer->userChoices["step$step"] = $data;
-
-                // Увеличиваем шаг.
-                $step ++;
-                $this->sessionContainer->step = $step;
-
-                // Если мы прошли все 3 шага, перенаправляем на страницу проверки данных Review.
-                if ($step>3) {
-                    return $this->redirect()->toRoute('registration',
-                        ['action'=>'review']);
-                }
-
-                // Переходим на следующий шаг.
-                return $this->redirect()->toRoute('registration');
-            }
-        }
-
-        $viewModel = new ViewModel([
-            'form' => $form
-        ]);
-        $viewModel->setTemplate("application/registration/step$step");
-
-        return $viewModel;
-    }
-
-    /**
-     * Действие "review" отображает страницу, позволяющую проверить данные, введенные на
-     * предыдущих шагах.
-     */
-    public function reviewAction()
-    {
-        // Валидируем данные сессии.
-        if(!isset($this->sessionContainer->step) ||
-            $this->sessionContainer->step<=3 ||
-            !isset($this->sessionContainer->userChoices)) {
-            throw new \Exception('Извините, данные пока не доступны для проверки');
-        }
-
-        // Извлекаем из сессии выборы пользователя.
-        $userChoices = $this->sessionContainer->userChoices;
-
-        return new ViewModel([
-            'userChoices' => $userChoices
+        return new JsonModel([
+            'status' => 'SUCCESS',
+            'message'=>'Here is your data',
+            'data' => [
+                'full_name' => 'John Doe',
+                'address' => '51 Middle st.'
+            ]
         ]);
     }
 }

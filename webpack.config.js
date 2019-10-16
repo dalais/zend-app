@@ -1,30 +1,74 @@
+const webpack = require('webpack');
 const path = require('path');
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ENVIRONMENT = process.env.NODE_ENV || 'development';
 
-module.exports = {
-    entry: './resources/src/index.js',
+let config = {
+    context: path.resolve(__dirname, "resources/src"),
+    entry: './index.tsx',
     output: {
         filename: 'bundle.js',
-        path: path.join(__dirname, './resources/dist')
+        path: path.resolve(__dirname, "public/js")
+    },
+    resolve: {
+        extensions: [ ".js", ".jsx", '.ts', '.tsx']
     },
     module: {
         rules: [
             {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader"
-                },
+                test: /\.tsx?$/,
+                use: [{
+                    loader: 'babel-loader',
+                    query: {
+                        presets: ['@babel/preset-env', '@babel/preset-react']
+                    }
+                }, {
+                    loader: 'ts-loader'
+                }]
             },
+
             {
-                test: /\.css$/,
-                use: ["style-loader", "css-loader"]
+                test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/,
+                loader: 'url-loader'
+            },
+
+            {
+                test: /\.scss$/,
+                use: [
+                    {
+                        loader: "style-loader"
+                    },
+                    {
+                        loader: "css-loader"
+                    },
+                    {
+                        loader: "resolve-url-loader"
+                    },
+                    {
+                        loader: "sass-loader"
+                    }
+                ]
             }
         ]
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            template: "./resources/src/index.html"
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify(ENVIRONMENT)
         })
-    ]
+    ],
+    node: {
+        process: false
+    }
 };
+
+if (ENVIRONMENT == 'production') {
+    config.plugins.push(
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                drop_console: false,
+                warnings: false
+            }
+        })
+    );
+}
+
+module.exports = config;

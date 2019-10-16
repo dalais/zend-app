@@ -31,11 +31,11 @@ return [
             ],
         ],
     ],
-    'view_manager' => [
+    /*'view_manager' => [
         'template_path_stack' => [
-            'ZendSkeletonModule' => __DIR__ . '/../view',
+            'Api' => __DIR__ . '/../view',
         ],
-    ],
+    ],*/
     'doctrine' => [
         'driver' => [
             __NAMESPACE__ . '_driver' => [

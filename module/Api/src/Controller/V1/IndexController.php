@@ -15,16 +15,7 @@ class IndexController extends AbstractActionController
     public function indexAction()
     {
         return new JsonModel([
-            'status' => 'SUCCESS',
-            'message'=>'Here is your index'
-        ]);
-    }
-
-    public function someAction()
-    {
-        return new JsonModel([
-            'status' => 'SUCCESS',
-            'message'=>'This is some action'
+            'greetings' => 'Hello React'
         ]);
     }
 }

@@ -7,37 +7,25 @@
 
 namespace Application;
 
-use Zend\Router\Http\Literal;
-use Zend\Router\Http\Segment;
+use Zend\Router\Http\Regex;
 use Zend\Router\Http\TreeRouteStack;
 use Zend\ServiceManager\Factory\InvokableFactory;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 
+//'@^\b(?:(?!api\/)\w)([^\?]+)(\?.*)?$|(?=^$)@',
 return [
     'router' => [
         'router_class' => TreeRouteStack::class,
         'routes' => [
             'home' => [
-                'type' => Literal::class,
+                'type' => Regex::class,
                 'options' => [
-                    'route'    => '/',
+                    'regex'    => '([^\?]+)(\?.*)?',
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
                         'action'     => 'index',
                     ],
-                ],
-            ],
-            'registration' => [
-                'type'    => Segment::class,
-                'options' => [
-                    'route'    => '/registration[/:action]',
-                    'constraints' => [
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
-                    ],
-                    'defaults' => [
-                        'controller'    => Controller\RegistrationController::class,
-                        'action'        => 'index',
-                    ],
+                    'spec' => ''
                 ],
             ],
         ],
@@ -45,7 +33,6 @@ return [
     'controllers' => [
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
-            Controller\RegistrationController::class => Controller\Factory\RegistrationControllerFactory::class,
         ],
     ],
 

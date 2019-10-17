@@ -15,38 +15,23 @@ let config = {
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
+                test: /\.(ts|tsx)?$/,
+                include: path.resolve(__dirname, 'resources/src'),
+                exclude: /node_modules/,
                 use: [{
                     loader: 'babel-loader',
                     query: {
+                        cacheDirectory: true,
                         presets: ['@babel/preset-env', '@babel/preset-react']
-                    }
+                    },
                 }, {
                     loader: 'ts-loader'
                 }]
             },
 
             {
-                test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/,
-                loader: 'url-loader'
-            },
-
-            {
-                test: /\.scss$/,
-                use: [
-                    {
-                        loader: "style-loader"
-                    },
-                    {
-                        loader: "css-loader"
-                    },
-                    {
-                        loader: "resolve-url-loader"
-                    },
-                    {
-                        loader: "sass-loader"
-                    }
-                ]
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
             }
         ]
     },

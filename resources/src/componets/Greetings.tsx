@@ -1,4 +1,3 @@
-// файл frontend/components/Greetings.tsx
 import * as React from 'react';
 
 export interface GreetingsProps {

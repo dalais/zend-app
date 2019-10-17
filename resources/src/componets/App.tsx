@@ -1,9 +1,8 @@
-// файл frontend/components/App.tsx
 import * as React from 'react';
 
 import {connect} from 'react-redux'
 import Greetings from './Greetings';
-
+import Navbar from './Navbar';
 
 const mapStateToProps = (state) => {
     return state;
@@ -17,8 +16,8 @@ const mapDispatchToProps = (dispatch) => {
             }).then((json) => {
                 dispatch({type: 'FETCH_GREETING', text: json.greeting})
             });
-        }
+        },
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Greetings);
+export default connect(mapStateToProps, mapDispatchToProps)(Greetings)(Navbar);

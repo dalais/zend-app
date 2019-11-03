@@ -1,50 +1,48 @@
 {
   "name": "zend-skelet",
-  "version": "1.0.0",
-  "description": "## Introduction",
+  "version": "0.1.0",
+  "description": "My awesome app",
   "main": "index.js",
-  "scripts": {
-    "dev": "webpack -d",
-    "build": "webpack -p",
-    "watch": "webpack --watch",
-    "server": "webpack-dev-server --open"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dalais/zend-app.git"
-  },
-  "author": "Dalay Salchak",
+  "repository": "git@github.com:dalais/zend-app.git",
+  "author": "Dalay Salchak <okeanol777@gmail.com>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/dalais/zend-app/issues"
+  "scripts": {
+    "dev": "webpack-dev-server --open --config resources/build/webpack.dev.config.js",
+    "build": "webpack --config resources/build/webpack.build.config.js"
   },
-  "homepage": "https://github.com/dalais/zend-app#readme",
-  "dependencies": {
-    "@types/node": "^12.11.1",
-    "@types/react": "^16.9.7",
-    "@types/react-dom": "^16.9.2",
-    "fibers": "^4.0.1",
-    "file-loader": "^4.2.0",
-    "node-sass": "^4.12.0",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
-    "react-redux": "^7.1.1",
-    "reactstrap": "^8.0.1",
-    "redux": "^4.0.4",
-    "sass": "^1.23.0",
-    "ts-loader": "^6.2.0",
-    "typescript": "^3.6.4",
-    "url-loader": "^2.2.0"
+  "browserslist": {
+    "production": [
+      "> 1%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
-    "@babel/preset-react": "^7.6.3",
+    "autoprefixer": "^9.7.1",
     "babel-loader": "^8.0.6",
+    "copy-webpack-plugin": "^5.0.4",
     "css-loader": "^3.2.0",
+    "css-mqpacker": "^7.0.0",
+    "cssnano": "^4.1.10",
+    "file-loader": "^4.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.13.0",
+    "path": "^0.12.7",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
     "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.8.2"
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0",
+    "webpack-merge": "^4.2.2"
   }
 }

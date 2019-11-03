@@ -18,4 +18,11 @@ class IndexController extends AbstractActionController
             'greeting' => 'Hello React'
         ]);
     }
+
+    public function versionAction()
+    {
+        return new JsonModel([
+            \Application\Module::VERSION
+        ]);
+    }
 }

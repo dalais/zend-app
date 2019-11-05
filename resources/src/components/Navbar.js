@@ -13,10 +13,10 @@ export default class Navbar extends React.Component {
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-                        <a className="navbar-brand" href="/">
+                        <Link className="navbar-brand" to="/">
                             <img src="img/zf-logo-mark.svg" height="28"
                                  alt="Zend Framework"/>&nbsp;Skeleton App
-                        </a>
+                        </Link>
                     </div>
                     <div className="collapse navbar-collapse">
                         <ul className="nav navbar-nav">

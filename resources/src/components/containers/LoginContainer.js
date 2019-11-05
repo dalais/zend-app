@@ -10,7 +10,10 @@ class LoginContainer extends React.Component {
             email={this.props.email}
             password={this.props.password}
             setEmailText={this.props.setEmailText}
-            setPasswordText={this.props.setPasswordText}/>;
+            setPasswordText={this.props.setPasswordText}
+        >
+
+        </Login>;
     }
 }
 const mapStateProps = state => {

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default class Navbar extends React.Component {
     render() {
@@ -13,12 +14,14 @@ export default class Navbar extends React.Component {
                             <span className="icon-bar"></span>
                         </button>
                         <a className="navbar-brand" href="/">
-                            <img src="/" height="28"/>&nbsp;Skeleton Application
+                            <img src="img/zf-logo-mark.svg" height="28"
+                                 alt="Zend Framework"/>&nbsp;Skeleton App
                         </a>
                     </div>
                     <div className="collapse navbar-collapse">
                         <ul className="nav navbar-nav">
-                            <li className="active"><a href="/">Home</a></li>
+                            <li className=""><Link to="/">Home</Link></li>
+                            <li className=""><Link to="/login">Log In</Link></li>
                         </ul>
                     </div>
                 </div>

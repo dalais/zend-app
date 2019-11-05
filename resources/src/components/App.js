@@ -1,8 +1,6 @@
 import React, {Component} from "react";
-import {connect} from "react-redux";
-import Login from "./Auth/Login";
-import Signup from "./Auth/Signup";
-import Navbar from "./Navbar";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import HomeContainer from "./containers/HomeContainer";
 import LoginContainer from "./containers/LoginContainer";
 
 
@@ -10,9 +8,12 @@ import LoginContainer from "./containers/LoginContainer";
 export default class App extends Component {
     render() {
         return (
-            <div>
-                <LoginContainer/>
-            </div>
+            <Router>
+                <Switch>
+                    <Route exact path='/' component={HomeContainer} />
+                    <Route path='/login' component={LoginContainer} />
+                </Switch>
+            </Router>
         );
     }
 }

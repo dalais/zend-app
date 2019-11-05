@@ -21,6 +21,10 @@ module.exports = {
         path: PATHS.dist,
         publicPath: '/'
     },
+    stats: {
+        warnings: false,
+        errors: true
+    },
     module: {
         rules: [{
             test: /\.js$/,

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import Home from "../Home"
+import Home from "../pages/Home/Home"
 
 class HomeContainer extends React.Component {
     render() {

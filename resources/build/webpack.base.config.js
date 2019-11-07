@@ -22,7 +22,7 @@ module.exports = {
         publicPath: '/'
     },
     stats: {
-        warnings: false,
+        warnings: true,
         errors: true
     },
     module: {

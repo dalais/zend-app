@@ -3,9 +3,7 @@
 namespace Api;
 
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
-use Zend\Router\Http\Literal;
 use Zend\Router\Http\Regex;
-use Zend\Router\Http\Segment;
 use Zend\Router\Http\TreeRouteStack;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
@@ -21,13 +19,33 @@ return [
             'api_v1' => [
                 'type'    => Regex::class,
                 'options' => [
-                    'regex'    => '/api/v1/(?<index>[a-zA-Z0-9_-]+)',
-                    'defaults' => [
-                        'controller'    => Controller\V1\IndexController::class,
-                        'action'        => 'index',
-                    ],
-                    'spec' => '/api/v1/%index%'
+                    'regex'    => '/api/v1',
+                    'spec' => ''
                 ],
+                'child_routes' => [
+                    'index' => [
+                        'type'    => Regex::class,
+                        'options' => [
+                            'regex'    => '/index',
+                            'defaults' => [
+                                'controller'    => Controller\V1\IndexController::class,
+                                'action'        => 'index',
+                            ],
+                            'spec' => ''
+                        ],
+                    ],
+                    'version' => [
+                        'type'    => Regex::class,
+                        'options' => [
+                            'regex'    => '/version',
+                            'defaults' => [
+                                'controller'    => Controller\V1\IndexController::class,
+                                'action'        => 'version',
+                            ],
+                            'spec' => ''
+                        ],
+                    ],
+                ]
             ],
         ],
     ],

@@ -1,18 +1,26 @@
-export const SIGNUP_CHANGE_EMAIL_TEXT = 'SIGNUP_CHANGE_EMAIL_TEXT';
-export const SIGNUP_CHANGE_PASSWORD_TEXT = 'SIGNUP_CHANGE_PASSWORD_TEXT';
-export const SIGNUP_CHANGE_REPEAT_PASSWORD_TEXT = 'SIGNUP_CHANGE_REPEAT_PASSWORD_TEXT';
+export const userPostFetch = user => {
+    return dispatch => {
+        return fetch("http://"+ window.location.hostname +"/api/v1/signup", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+            },
+            body: JSON.stringify({user})
+        })
+            .then(resp => resp.json())
+            .then(data => {
+                if (data.message) {
+                    //Тут прописываем логику
+                } else {
+                    localStorage.setItem("token", data.jwt);
+                    dispatch(loginUser(data.user))
+                }
+            })
+    }
+};
 
-export const setEmailText = email => ({
-    type: SIGNUP_CHANGE_EMAIL_TEXT,
-    payload: email
-});
-
-export const setPasswordText = password => ({
-    type: SIGNUP_CHANGE_PASSWORD_TEXT,
-    payload: password
-});
-
-export const setRepeatPasswordText = password => ({
-    type: SIGNUP_CHANGE_REPEAT_PASSWORD_TEXT,
-    payload: password
+export const signupUser = userObj => ({
+    type: 'SIGNUP_USER',
+    payload: userObj
 });

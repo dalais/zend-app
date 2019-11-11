@@ -1,12 +1,10 @@
 import React from "react";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import Home from "../pages/Home/Home"
 
-class HomeContainer extends React.Component {
-    render() {
-        return <Home/>;
-    }
-}
+const HomeContainer = () => {
+    return <Home/>;
+};
 
 const mapStateProps = state => {
     return {}

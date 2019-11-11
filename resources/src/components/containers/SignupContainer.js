@@ -1,17 +1,16 @@
 import React from "react";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import Signup from "../Auth/Signup";
-import { signupUser } from "../../store/auth/signup/actions";
-class SignupContainer extends React.Component {
-    render() {
-        return <Signup
-            email={this.props.email}
-            password={this.props.password}
-            repeatPassword={this.props.repeatPassword}
-            userPostFetch={this.props.userPostFetch}
-        />
-    }
-}
+import {signupUser} from "../../store/auth/signup/actions";
+
+const SignupContainer = (props) => {
+    return <Signup
+        email={props.email}
+        password={props.password}
+        repeatPassword={props.repeatPassword}
+        userPostFetch={props.userPostFetch}
+    />
+};
 
 const mapStateProps = state => {
     return {
@@ -22,7 +21,7 @@ const mapStateProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    userPostFetch: userInfo => dispatch({ type: 'SIGNUP_USER', payload: userInfo}),
+    userPostFetch: userInfo => dispatch({type: 'SIGNUP_USER', payload: userInfo}),
     signupUser
 });
 
